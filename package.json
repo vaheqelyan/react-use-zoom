@@ -1,6 +1,6 @@
 {
   "name": "react-use-zoom",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Almost native image zooming (Mobile/Desktop), with rich functionality.",
   "main": "build/index.js",
   "source": "src/index.js",
