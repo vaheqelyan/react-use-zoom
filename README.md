@@ -50,8 +50,8 @@ https://unpkg.com/react-use-zoom@latest/build/index.umd.js
 import { useZoom } from "react-use-zoom";
 
 const MyComponent = () => {
-  const { ref, style, events } = useZoom();
-  return <img src={"..."} ref={ref} style={style} {...events} />;
+  const { ref, fit, events } = useZoom();
+  return <img src={"..."} ref={ref} style={{ objectFit: fit }} {...events} />;
 };
 ```
 
@@ -63,7 +63,7 @@ If for some reason you want to zoom in by calling the function manually. You can
 import { useZoom } from "react-use-zoom";
 
 const MyComponent = () => {
-  const { ref, style, events, `zoomIn`, `zoomOut` } = useZoom();
+  const { ref, fit, events, `zoomIn`, `zoomOut` } = useZoom();
   const handleInZoom = () => `zoomIn()`;
   const handleOutZoom = () => `zoomOut()`;
 };
@@ -76,5 +76,5 @@ const MyComponent = () => {
 | events  | `React.TouchEvent`,`React.MouseEvent`,`Event` | events must be assigned to an element to work with it. `onLoad`, `onMouseDown` or `onTouchStart` |
 | zoomIn  | `Function`                                    | Call the zoom in manually. The transformation point will be at the center                        |
 | zoomOut | `Function`                                    | Call the zoom out manually. The transformation point will be at the center                       |
-| style   | `React.CSSProperties`                         |
+| fit   | `React.CSSProperties`                         |Decides when the image should be `object-fit: contain;' or 'object-fit: none;'
 | ref     | `React.RefObject`                             | Access an image by providing a reference                                                         |
