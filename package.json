@@ -1,0 +1,56 @@
+{
+  "name": "react-use-zoom",
+  "version": "0.1.0",
+  "description": "Almost native image zooming (Mobile/Desktop), with rich functionality.",
+  "main": "build/index.js",
+  "source": "src/index.js",
+  "scripts": {
+    "preversion": "npm run go",
+    "go": "npm-run-all pretty build",
+    "demo": "parcel demo/index.html --no-hmr",
+    "dev": "microbundle --no-compress --globals react=React",
+    "build": "microbundle --globals react=React",
+    "pretty": "prettier --config .prettierrc --write \"package.json\" \"rollup.config.js\" \"src/*.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vaheqelyan/react-use-zoom.git"
+  },
+  "keywords": [
+    "react",
+    "hook",
+    "zoom",
+    "pinch",
+    "pan",
+    "touch",
+    "mobile",
+    "desktop",
+    "browser",
+    "mouse"
+  ],
+  "author": "Vahe Araqelyan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vaheqelyan/react-use-zoom/issues"
+  },
+  "homepage": "https://github.com/vaheqelyan/react-use-zoom#readme",
+  "dependencies": {
+    "react": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "microbundle": "^0.12.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.16.4",
+    "react-dom": "^16.8.6",
+    "rollup": "^1.21.4",
+    "rollup-plugin-alias": "^1.5.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-node-resolve": "^4.2.4",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-size-snapshot": "^0.8.0",
+    "rollup-plugin-sucrase": "^2.1.0",
+    "rollup-plugin-uglify": "^6.0.2"
+  }
+}
