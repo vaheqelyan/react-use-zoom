@@ -2,6 +2,19 @@
 
 Nearly native image scaling (:iphone:/:computer:), rich in functionality. It is extremely easy to use. It's built on the comparison, like smartphone galleries. It doesn't seem slow, but it doesn't seem fast either. to be honest, I didn't measure performance. This will also boost your mobile app and website user experience.
 
+<p>
+  <a href="https://www.npmjs.com/package/react-use-zoom"><img  src="https://img.shields.io/npm/v/react-use-zoom?style=for-the-badge"/></a>
+
+<a href="https://bundlephobia.com/result?p=react-use-zoom@latest">
+  <img src="https://img.shields.io/bundlephobia/min/react-use-zoom?style=for-the-badge"/>
+</a>
+  
+<a href="https://bundlephobia.com/result?p=react-use-zoom@latest">
+  <img src="https://img.shields.io/bundlephobia/minzip/react-use-zoom?style=for-the-badge"/>
+</a>
+
+</p>
+
 ###### Note
 
 > The image must be full width and full height
