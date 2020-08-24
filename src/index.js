@@ -270,7 +270,7 @@ function useZoom() {
       onTouchStart,
       onMouseDown,
     },
-    objectFit: fit,
+    objectFit: fit ? "contain" : "none",
     imgRef: img,
   };
 }
