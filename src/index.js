@@ -72,8 +72,16 @@ function useZoom() {
     scale.current.value = mat.d;
   };
 
+  const onResize = () => {
+    onLoad();
+    fireDown(0, 0);
+    fireMove(0, 0);
+    fireUp();
+  };
+
   useEffect(() => {
     window.addEventListener("wheel", onWheel, { passive: false }); //asd
+    window.addEventListener("resize", onResize);
   }, []);
 
   const onMouseDown = ({ clientX, clientY }) => {
