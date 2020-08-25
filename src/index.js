@@ -148,7 +148,7 @@ function useZoom() {
 
   const fireTapScale = (x, y) => {
     let scaleVtm = matrix.current.vtm.a;
-    let scale_value = scaleVtm > 1 ? scaleVtm - 1 : scale.current.max / 2;
+    let scale_value = scaleVtm > 1 ? scaleVtm - 1 : scale.current.max / 2.5;
     let scale_factor = scaleVtm > 1 ? -1 : 1;
 
     const xFactor = 1 + scale_value * scale_factor;
