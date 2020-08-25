@@ -55,7 +55,7 @@ npm i react-use-zoom
 https://unpkg.com/react-use-zoom@latest/build/index.umd.js
 ```
 
-`UMD` library exposed as `ReactUseZoom`
+`UMD` library exposed as `reactUseZoom`
 
 ### Usage
 
