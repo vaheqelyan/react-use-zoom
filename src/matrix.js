@@ -17,16 +17,17 @@ export default class Matrix {
     let same_x = Math.min(this.vtm.e * 1.0, 0);
     let same_y = Math.min(this.vtm.f * 1.0, 0);
 
-    let value1 = in_x > 0 ? same_x : -(xx * scale);
-    let value2 = in_x > 0 ? same_x : -limit_max_right_formula;
+    let value1 = in_x > 0 ? same_x : -(xx * scale) - 2;
+    let value2 = in_x > 0 ? same_x : -limit_max_right_formula + 2;
 
     let limit_x_axis = this.vtm.e;
     limit_x_axis = Math.max(value2, this.vtm.e);
     limit_x_axis = Math.min(value1, limit_x_axis);
 
     let limit_max_bottom_formula = yy * scale + ratio.height * scale - window.innerHeight;
-    let limit_max_top = in_y > 0 ? same_y : -(yy * scale);
-    let limit_max_bottom = in_y > 0 ? same_y : -limit_max_bottom_formula;
+    // - 0.8 is a temporary solution
+    let limit_max_top = in_y > 0 ? same_y : -(yy * scale) - 2;
+    let limit_max_bottom = in_y > 0 ? same_y : -limit_max_bottom_formula + 2;
 
     let limit_y_axis = this.vtm.f;
     limit_y_axis = Math.min(limit_max_top, limit_y_axis);
