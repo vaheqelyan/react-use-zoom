@@ -264,6 +264,30 @@ function useZoom() {
     ratio.current = calculateAspectRatioFit(img.current.naturalWidth, img.current.naturalHeight, window.innerWidth, window.innerHeight);
   };
 
+  const fireManualZoom = dir => {
+    img.current.classList.add("tr");
+    const xFactor = 1 + 0.1 * dir;
+    const yFactor = (xFactor * window.innerHeight) / window.innerWidth;
+
+    if (scale.current.value * xFactor >= scale.current.max) return;
+
+    let in_x = (window.innerWidth - ratio.current.width * matrix.current.vtm.a) / 2;
+    let in_y = (window.innerHeight - ratio.current.height * matrix.current.vtm.a) / 2;
+
+    const origin = {
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2,
+    };
+
+    const mat = matrix.current.scale(xFactor, yFactor, origin, in_x, in_y, ratio.current);
+    img.current.style.transform = `translate(${mat.e}px,${mat.f}px) scale(${mat.d})`;
+    scale.current.value = mat.d;
+  };
+
+  const zoomIn = () => fireManualZoom(1);
+
+  const zoomOut = () => fireManualZoom(-1);
+
   return {
     events: {
       onLoad,
@@ -272,6 +296,8 @@ function useZoom() {
     },
     fit: fit ? "contain" : "none",
     imgRef: img,
+    zoomIn,
+    zoomOut,
   };
 }
 
