@@ -265,7 +265,6 @@ function useZoom() {
   };
 
   const fireManualZoom = dir => {
-    img.current.classList.add("tr");
     const xFactor = 1 + 0.1 * dir;
     const yFactor = (xFactor * window.innerHeight) / window.innerWidth;
 
