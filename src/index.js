@@ -68,8 +68,6 @@ function useZoom() {
     const xFactor = 1 + 0.1 * dir;
     const yFactor = (xFactor * window.innerHeight) / window.innerWidth;
 
-    if (scale.current.value * xFactor >= scale.current.max) return;
-
     let in_x = (window.innerWidth - ratio.current.width * matrix.current.vtm.a) / 2; // maybe need to pre scale
     let in_y = (window.innerHeight - ratio.current.height * matrix.current.vtm.a) / 2;
 
@@ -78,7 +76,7 @@ function useZoom() {
       y: in_y > 0 ? window.innerHeight / 2 : e.pageY,
     };
 
-    const mat = matrix.current.scale(xFactor, yFactor, origin, in_x, in_y, ratio.current);
+    const mat = matrix.current.scale(xFactor, yFactor, origin, in_x, in_y, ratio.current, scale.current.max, scale.current.value * xFactor, f);
     img.current.style.transform = `translate(${mat.e}px,${mat.f}px) scale(${mat.d})`;
     scale.current.value = mat.d;
   };
@@ -165,8 +163,6 @@ function useZoom() {
     const xFactor = 1 + scale_value * scale_factor;
     const yFactor = (xFactor * window.innerHeight) / window.innerWidth;
 
-    if (scale.current.value * xFactor >= scale.current.max) return;
-
     let in_x = (window.innerWidth - ratio.current.width * Math.max(xFactor * scaleVtm, 1)) / 2; // maybe vtm.a * xFactor
     let in_y = (window.innerHeight - ratio.current.height * Math.max(xFactor * scaleVtm, 1)) / 2; // maybe vtm.a * yFactor
 
@@ -175,7 +171,7 @@ function useZoom() {
       y: in_y > 0 ? window.innerHeight / 2 : y,
     };
 
-    const mat = matrix.current.scale(xFactor, yFactor, origin, in_x, in_y, ratio.current);
+    const mat = matrix.current.scale(xFactor, yFactor, origin, in_x, in_y, ratio.current, scale.current.max, scale.current.value * xFactor, f);
 
     scale.current.value = mat.d;
     img.current.style.transform = `translate(${mat.e}px, ${mat.f}px) scale(${mat.d})`;
@@ -225,9 +221,6 @@ function useZoom() {
 
     const xFactor = 1 + 0.1 * ff * f;
 
-    // If scale is too much.. than stop;
-    if (scale.current.value * xFactor >= scale.current.max) return;
-
     const yFactor = (xFactor * window.innerHeight) / window.innerWidth;
 
     let in_x = (window.innerWidth - ratio.current.width * matrix.current.vtm.a) / 2; // maybe * xFactor
@@ -238,7 +231,7 @@ function useZoom() {
       y: in_y > 0 ? window.innerHeight / 2 : scale.current.originY,
     };
 
-    const mat = matrix.current.scale(xFactor, yFactor, origin, in_x, in_y, ratio.current);
+    const mat = matrix.current.scale(xFactor, yFactor, origin, in_x, in_y, ratio.current, scale.current.max, scale.current.value * xFactor, f);
 
     img.current.style.transform = `translate(${mat.e}px, ${mat.f}px) scale(${mat.d})`;
 
@@ -279,8 +272,6 @@ function useZoom() {
     const xFactor = 1 + 0.1 * dir;
     const yFactor = (xFactor * window.innerHeight) / window.innerWidth;
 
-    if (scale.current.value * xFactor >= scale.current.max) return;
-
     let in_x = (window.innerWidth - ratio.current.width * matrix.current.vtm.a) / 2;
     let in_y = (window.innerHeight - ratio.current.height * matrix.current.vtm.a) / 2;
 
@@ -289,7 +280,7 @@ function useZoom() {
       y: window.innerHeight / 2,
     };
 
-    const mat = matrix.current.scale(xFactor, yFactor, origin, in_x, in_y, ratio.current);
+    const mat = matrix.current.scale(xFactor, yFactor, origin, in_x, in_y, ratio.current, scale.current.max, scale.current.value * xFactor, dir);
     img.current.style.transform = `translate(${mat.e}px,${mat.f}px) scale(${mat.d})`;
     scale.current.value = mat.d;
   };
