@@ -77,7 +77,7 @@ export default class Matrix {
       .translate(-origin.x, -origin.y)
       .multiply(this.vtm);
 
-    let pre_scale = Math.min(Math.max(1, this.vtm.a), max) 
+    let pre_scale = Math.min(Math.max(1, this.vtm.a), max);
 
     this.clamp(pre_scale, in_x, in_y, ratio);
 
