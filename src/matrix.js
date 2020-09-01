@@ -6,6 +6,8 @@ export default class Matrix {
 
     this.x = 0;
     this.y = 0;
+
+    this.captureScale = 1;
   }
 
   clamp(scale, in_x, in_y, ratio) {
@@ -50,7 +52,25 @@ export default class Matrix {
     return this.vtm;
   }
 
-  scale(xFactor, yFactor, origin, in_x, in_y, ratio) {
+  scale(xFactor, yFactor, origin, in_x, in_y, ratio, max, value, dir) {
+    if ((value >= max || this.stop) && dir === 1) {
+      this.stop = true;
+      if (!this.deb) {
+        this.captureScale = this.vtm.a;
+        this.vtm = this.createSVGMatrix()
+          .translate(origin.x, origin.y)
+          .scale(max / this.captureScale)
+          .translate(-origin.x, -origin.y)
+          .translate(this.vtm.e, this.vtm.f)
+          .scale(this.captureScale);
+
+        this.deb = true;
+      }
+      return this.vtm;
+    } else {
+      this.stop = false;
+    }
+
     this.vtm = this.createSVGMatrix()
       .translate(origin.x, origin.y)
       .scale(xFactor, yFactor)
