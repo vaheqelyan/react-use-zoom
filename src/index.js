@@ -10,8 +10,19 @@ const getDistance = (touchA, touchB) => {
   return Math.hypot(touchA.pageX - touchB.pageX, touchA.pageY - touchB.pageY);
 };
 
+function isTouchDevice() {
+  try {
+    document.createEvent("TouchEvent");
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 import Matrix from "./matrix";
 import MultiTouchVelocity from "./velocity";
+
+const isTouch = isTouchDevice();
 
 function useZoom() {
   const xY = useRef({
@@ -270,7 +281,11 @@ function useZoom() {
 
     if (scale.current.value * xFactor >= scale.current.max) return;
 
+<<<<<<< HEAD
     let in_x = (window.innerWidth - ratio.current.width * matrix.current.vtm.a) / 2; // maybe need to pre scale
+=======
+    let in_x = (window.innerWidth - ratio.current.width * matrix.current.vtm.a) / 2;
+>>>>>>> 32e4caa6bcb3dd91ef2c21f154236b821b547faf
     let in_y = (window.innerHeight - ratio.current.height * matrix.current.vtm.a) / 2;
 
     const origin = {
@@ -290,8 +305,7 @@ function useZoom() {
   return {
     events: {
       onLoad,
-      onTouchStart,
-      onMouseDown,
+      ...(isTouch ? { onTouchStart } : { onMouseDown }),
     },
     fit: fit ? "contain" : "none",
     imgRef: img,
