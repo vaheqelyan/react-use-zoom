@@ -68,7 +68,7 @@ function useZoom() {
     const xFactor = 1 + 0.1 * dir;
     const yFactor = (xFactor * window.innerHeight) / window.innerWidth;
 
-    let in_x = (window.innerWidth - ratio.current.width * matrix.current.vtm.a) / 2; // maybe need to pre scale
+    let in_x = (window.innerWidth - ratio.current.width * matrix.current.vtm.a) / 2;
     let in_y = (window.innerHeight - ratio.current.height * matrix.current.vtm.a) / 2;
 
     const origin = {
@@ -76,7 +76,17 @@ function useZoom() {
       y: in_y > 0 ? window.innerHeight / 2 : e.pageY,
     };
 
-    const mat = matrix.current.scale(xFactor, yFactor, origin, in_x, in_y, ratio.current, scale.current.max, scale.current.value * xFactor, f);
+    const mat = matrix.current.scale(
+      xFactor,
+      yFactor,
+      origin,
+      in_x,
+      in_y,
+      ratio.current,
+      scale.current.max,
+      scale.current.value * xFactor,
+      f,
+    );
     img.current.style.transform = `translate(${mat.e}px,${mat.f}px) scale(${mat.d})`;
     scale.current.value = mat.d;
   };
@@ -89,7 +99,7 @@ function useZoom() {
   };
 
   useEffect(() => {
-    window.addEventListener("wheel", onWheel, { passive: false }); //asd
+    window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("resize", onResize);
   }, []);
 
@@ -143,7 +153,7 @@ function useZoom() {
     const xTouch = [Math.min(touchA.pageX, touchB.pageX), Math.max(touchA.pageX, touchB.pageX)];
 
     const yTouch = [Math.min(touchA.pageY, touchB.pageY), Math.max(touchA.pageY, touchB.pageY)];
-    //df
+
     const W = xTouch[1] - xTouch[0];
     const centerX = W / 2 + xTouch[0];
 
@@ -171,7 +181,17 @@ function useZoom() {
       y: in_y > 0 ? window.innerHeight / 2 : y,
     };
 
-    const mat = matrix.current.scale(xFactor, yFactor, origin, in_x, in_y, ratio.current, scale.current.max, scale.current.value * xFactor, f);
+    const mat = matrix.current.scale(
+      xFactor,
+      yFactor,
+      origin,
+      in_x,
+      in_y,
+      ratio.current,
+      scale.current.max,
+      scale.current.value * xFactor,
+      f,
+    );
 
     scale.current.value = mat.d;
     img.current.style.transform = `translate(${mat.e}px, ${mat.f}px) scale(${mat.d})`;
@@ -231,7 +251,17 @@ function useZoom() {
       y: in_y > 0 ? window.innerHeight / 2 : scale.current.originY,
     };
 
-    const mat = matrix.current.scale(xFactor, yFactor, origin, in_x, in_y, ratio.current, scale.current.max, scale.current.value * xFactor, f);
+    const mat = matrix.current.scale(
+      xFactor,
+      yFactor,
+      origin,
+      in_x,
+      in_y,
+      ratio.current,
+      scale.current.max,
+      scale.current.value * xFactor,
+      f,
+    );
 
     img.current.style.transform = `translate(${mat.e}px, ${mat.f}px) scale(${mat.d})`;
 
@@ -265,7 +295,12 @@ function useZoom() {
     }
 
     scale.current.max = Math.max(naturalWidth / window.innerWidth, 1);
-    ratio.current = calculateAspectRatioFit(img.current.naturalWidth, img.current.naturalHeight, window.innerWidth, window.innerHeight);
+    ratio.current = calculateAspectRatioFit(
+      img.current.naturalWidth,
+      img.current.naturalHeight,
+      window.innerWidth,
+      window.innerHeight,
+    );
   };
 
   const fireManualZoom = dir => {
@@ -280,7 +315,17 @@ function useZoom() {
       y: window.innerHeight / 2,
     };
 
-    const mat = matrix.current.scale(xFactor, yFactor, origin, in_x, in_y, ratio.current, scale.current.max, scale.current.value * xFactor, dir);
+    const mat = matrix.current.scale(
+      xFactor,
+      yFactor,
+      origin,
+      in_x,
+      in_y,
+      ratio.current,
+      scale.current.max,
+      scale.current.value * xFactor,
+      dir,
+    );
     img.current.style.transform = `translate(${mat.e}px,${mat.f}px) scale(${mat.d})`;
     scale.current.value = mat.d;
   };
