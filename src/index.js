@@ -32,7 +32,6 @@ function useZoom({ transitionClassName }) {
     newY: 0,
   });
   const ratio = useRef();
-  const oldScale = useRef();
   const img = useRef();
   const matrix = useRef(new Matrix());
 
@@ -143,12 +142,10 @@ function useZoom({ transitionClassName }) {
     matrix.current.y -= xY.current.newY;
 
     scale.current.scaling = false;
-    oldScale.current = matrix.current.vtm.d;
     scale.current.lastHypo = 0;
   };
 
   const fireScale = (touchA, touchB) => {
-    oldScale.current = matrix.current.vtm.a;
     const xTouch = [Math.min(touchA.pageX, touchB.pageX), Math.max(touchA.pageX, touchB.pageX)];
 
     const yTouch = [Math.min(touchA.pageY, touchB.pageY), Math.max(touchA.pageY, touchB.pageY)];
