@@ -66,10 +66,9 @@ It is also very important that your image contains the following css properties.
   width: 100%;
   height: 100%;
   will-change: transform;
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   touch-action: none;
-  transform-origin: 0 0;
+  transform-origin: 0;
   position: absolute;
 }
 
