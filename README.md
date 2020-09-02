@@ -59,12 +59,41 @@ https://unpkg.com/react-use-zoom@latest/build/index.umd.js
 
 ### Usage
 
+It is also very important that your image contains the following css properties.
+
+```css
+.img {
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  touch-action: none;
+  transform-origin: 0 0;
+  position: absolute;
+}
+
+.basic-transition {
+  transition: all 0.2s;
+}
+```
+
 ```jsx
 import { useZoom } from "react-use-zoom";
 
 const MyComponent = () => {
-  const { ref, fit, events } = useZoom();
-  return <img src={"..."} ref={ref} style={{ objectFit: fit }} {...events} />;
+  const { ref, fit, events } = useZoom({
+    transitionClassName: "basic-transition",
+  });
+  return (
+    <img
+      className="img"
+      src={"..."}
+      ref={ref}
+      style={{ objectFit: fit }}
+      {...events}
+    />
+  );
 };
 ```
 
@@ -76,18 +105,19 @@ If for some reason you want to zoom in by calling the function manually. You can
 import { useZoom } from "react-use-zoom";
 
 const MyComponent = () => {
-  const { ref, fit, events, `zoomIn`, `zoomOut` } = useZoom();
-  const handleInZoom = () => `zoomIn()`;
-  const handleOutZoom = () => `zoomOut()`;
+const { ref, fit, events, `zoomIn`, `zoomOut` } = useZoom();
+const handleInZoom = () => `zoomIn()`;
+const handleOutZoom = () => `zoomOut()`;
 };
 ```
 
 #### API `useZoom`
 
-| Prop    | Type                                          | Description                                                                                      |
-| ------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| events  | `React.TouchEvent`,`React.MouseEvent`,`Event` | events must be assigned to an element to work with it. `onLoad`, `onMouseDown` or `onTouchStart` |
-| zoomIn  | `Function`                                    | Call the zoom in manually. The transformation point will be at the center                        |
-| zoomOut | `Function`                                    | Call the zoom out manually. The transformation point will be at the center                       |
-| fit   | `React.CSSProperties`                         |Decides when the image should be `object-fit: contain;' or 'object-fit: none;'
-| ref     | `React.RefObject`                             | Access an image by providing a reference                                                         |
+| Prop                | Type                                          | Description                                                                                      |
+| ------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| events              | `React.TouchEvent`,`React.MouseEvent`,`Event` | Events must be assigned to an element to work with it. `onLoad`, `onMouseDown` or `onTouchStart` |
+| zoomIn              | `Function`                                    | Call the zoom in manually. The transformation point will be at the center                        |
+| zoomOut             | `Function`                                    | Call the zoom out manually. The transformation point will be at the center                       |
+| fit                 | `React.CSSProperties`                         | Decides when the image should be `object-fit: contain;' or 'object-fit: none;'                   |
+| ref                 | `React.RefObject`                             | Access an image by providing a reference                                                         |
+| transitionClassName | `String`                                      | Class name to provide a smooth transition when scaling                                           |

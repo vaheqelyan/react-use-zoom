@@ -24,7 +24,7 @@ import MultiTouchVelocity from "./velocity";
 
 const isTouch = isTouchDevice();
 
-function useZoom() {
+function useZoom({ transitionClassName }) {
   const xY = useRef({
     initX: 0,
     initY: 0,
@@ -203,7 +203,7 @@ function useZoom() {
 
     scale.current.scaling = isMultiTouch;
 
-    img.current.classList.remove("tr");
+    img.current.classList.remove(transitionClassName);
     if (isMultiTouch) {
       fireScale(touchA, touchB);
 
@@ -212,7 +212,7 @@ function useZoom() {
       // === start ===
       var now = new Date().getTime();
       if (now - lastTap.current.time < 250 && Math.abs(lastTap.current.x - touchA.pageX) <= 20) {
-        img.current.classList.add("tr");
+        img.current.classList.add(transitionClassName);
         fireTapScale(touchA.pageX, touchA.pageY);
       }
 
