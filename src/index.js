@@ -41,7 +41,6 @@ function useZoom({ transitionClassName }) {
   const lastTap = useRef({
     time: 0,
     x: 0,
-    run: false,
   });
 
   const scale = useRef({
@@ -85,7 +84,7 @@ function useZoom({ transitionClassName }) {
       ratio.current,
       scale.current.max,
       scale.current.value * xFactor,
-      f,
+      dir,
     );
     img.current.style.transform = `translate(${mat.e}px,${mat.f}px) scale(${mat.d})`;
     scale.current.value = mat.d;
@@ -190,7 +189,7 @@ function useZoom({ transitionClassName }) {
       ratio.current,
       scale.current.max,
       scale.current.value * xFactor,
-      f,
+      scale_factor,
     );
 
     scale.current.value = mat.d;
