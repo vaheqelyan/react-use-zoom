@@ -292,8 +292,8 @@ function useZoom({ transitionClassName }) {
 
     scale.current.max = Math.max(naturalWidth / window.innerWidth, 1);
     ratio.current = calculateAspectRatioFit(
-      img.current.naturalWidth,
-      img.current.naturalHeight,
+      naturalWidth,
+      naturalHeight,
       window.innerWidth,
       window.innerHeight,
     );
