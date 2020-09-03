@@ -291,12 +291,7 @@ function useZoom({ transitionClassName }) {
     }
 
     scale.current.max = Math.max(naturalWidth / window.innerWidth, 1);
-    ratio.current = calculateAspectRatioFit(
-      naturalWidth,
-      naturalHeight,
-      window.innerWidth,
-      window.innerHeight,
-    );
+    ratio.current = calculateAspectRatioFit(naturalWidth, naturalHeight, window.innerWidth, window.innerHeight);
   };
 
   const fireManualZoom = dir => {
