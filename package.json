@@ -1,7 +1,7 @@
 {
   "name": "react-use-zoom",
   "version": "0.5.2",
-  "description": "Almost native image zooming (Mobile/Desktop), with rich functionality.",
+  "description": "Nearly native image scaling in web (mobile/desktop), rich in functionality. This will make your mobile users happy",
   "main": "build/index.js",
   "source": "src/index.js",
   "scripts": {
