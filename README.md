@@ -68,8 +68,10 @@ It is also very important that your image contains the following css properties.
   will-change: transform;
   backface-visibility: hidden;
   touch-action: none;
-  transform-origin: 0;
+  transform-origin: 0 0;
   position: absolute;
+  -webkit-user-drag: none;
+  user-drag: none;
 }
 
 .basic-transition {
