@@ -124,8 +124,6 @@ function useZoom({ transitionClassName }) {
 
     matrix.current.x = matrix.current.vtm.e;
     matrix.current.y = matrix.current.vtm.f;
-
-    img.current.classList.remove(transitionClassName);
   };
 
   const fireMove = (x, y) => {
