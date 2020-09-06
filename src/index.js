@@ -45,6 +45,8 @@ function useZoom({ transitionClassName }) {
     max: 1,
   });
 
+  const touchScreen = useRef(false);
+
   const [fit, setFit] = useState(false);
 
   const onWheel = e => {
@@ -92,6 +94,7 @@ function useZoom({ transitionClassName }) {
   }, []);
 
   const onMouseDown = ({ clientX, clientY }) => {
+    if (touchScreen.current) return;
     fireDown(clientX, clientY);
 
     img.current.classList.remove(transitionClassName);
@@ -188,6 +191,7 @@ function useZoom({ transitionClassName }) {
   };
 
   const onTouchStart = e => {
+    touchScreen.current = true;
     const isMultiTouch = e.touches.length === 2;
     const [touchA, touchB] = e.touches;
 
@@ -199,7 +203,6 @@ function useZoom({ transitionClassName }) {
 
       velocity.current.down(touchA, touchB);
     } else {
-      // === start ===
       var now = new Date().getTime();
       if (now - lastTap.current.time < 250 && Math.abs(lastTap.current.x - touchA.pageX) <= 20) {
         img.current.classList.add(transitionClassName);
