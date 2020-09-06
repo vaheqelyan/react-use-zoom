@@ -1,4 +1,6 @@
 import { useRef, useEffect, useState } from "react";
+import Matrix from "./matrix";
+import MultiTouchVelocity from "./velocity";
 
 function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
   var ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
@@ -18,9 +20,6 @@ function isTouchDevice() {
     return false;
   }
 }
-
-import Matrix from "./matrix";
-import MultiTouchVelocity from "./velocity";
 
 const isTouch = isTouchDevice();
 
@@ -100,33 +99,32 @@ function useZoom({ transitionClassName }) {
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("resize", onResize);
 
-   xY.current = {
-       initX: 0,
-       initY: 0,
-       newX: 0,
-       newY: 0,
-     };
-     ratio.current = {};
-     matrix.current = new Matrix()
+    xY.current = {
+      initX: 0,
+      initY: 0,
+      newX: 0,
+      newY: 0,
+    };
+    ratio.current = {};
+    matrix.current = new Matrix();
 
-     lastTap.current = {
-       time: 0,
-       x: 0,
-     };
+    lastTap.current = {
+      time: 0,
+      x: 0,
+    };
 
-     scale.current = {
-       scaling: false,
-       x1: 0,
-       x2: 0,
-       y1: 0,
-       y2: 0,
-       lastHypo: 0,
-       originX: 0,
-       originY: 0,
-       value: 1,
-       max: 1,
-     };
-
+    scale.current = {
+      scaling: false,
+      x1: 0,
+      x2: 0,
+      y1: 0,
+      y2: 0,
+      lastHypo: 0,
+      originX: 0,
+      originY: 0,
+      value: 1,
+      max: 1,
+    };
   }, []);
 
   const onMouseDown = ({ clientX, clientY }) => {
