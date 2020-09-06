@@ -12,17 +12,6 @@ const getDistance = (touchA, touchB) => {
   return Math.hypot(touchA.pageX - touchB.pageX, touchA.pageY - touchB.pageY);
 };
 
-function isTouchDevice() {
-  try {
-    document.createEvent("TouchEvent");
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-
-const isTouch = isTouchDevice();
-
 function useZoom({ transitionClassName }) {
   const xY = useRef({
     initX: 0,
@@ -330,7 +319,8 @@ function useZoom({ transitionClassName }) {
   return {
     events: {
       onLoad,
-      ...(isTouch ? { onTouchStart } : { onMouseDown }),
+      onMouseDown,
+      onTouchStart,
     },
     fit: fit ? "contain" : "none",
     imgRef: img,
