@@ -12,7 +12,7 @@ const getDistance = (touchA, touchB) => {
   return Math.hypot(touchA.pageX - touchB.pageX, touchA.pageY - touchB.pageY);
 };
 
-function useZoom({ transitionClassName }) {
+function useZoom({ transitionClassName, src }) {
   const xY = useRef({
     initX: 0,
     initY: 0,
@@ -281,14 +281,21 @@ function useZoom({ transitionClassName }) {
   };
 
   const onLoad = () => {
-    const { naturalWidth, naturalHeight } = img.current;
+    let loadImage = new Image();
 
-    if (naturalWidth > window.innerWidth || naturalHeight > window.innerHeight) {
-      setFit(true);
-    }
+    loadImage.onload = function() {
+      const { naturalWidth, naturalHeight } = loadImage;
+      if (naturalWidth > window.innerWidth || naturalHeight > window.innerHeight) {
+        setFit(true);
+      } else {
+        setFit(false);
+      }
 
-    scale.current.max = Math.max(naturalWidth / window.innerWidth, 1);
-    ratio.current = calculateAspectRatioFit(naturalWidth, naturalHeight, window.innerWidth, window.innerHeight);
+      scale.current.max = Math.max(naturalWidth / window.innerWidth, 1);
+      ratio.current = calculateAspectRatioFit(naturalWidth, naturalHeight, window.innerWidth, window.innerHeight);
+    };
+
+    loadImage.src = src;
   };
 
   const fireManualZoom = dir => {
@@ -324,11 +331,11 @@ function useZoom({ transitionClassName }) {
 
   return {
     events: {
-      onLoad,
       onMouseDown,
       onTouchStart,
     },
     fit: fit ? "contain" : "none",
+    visibility: fit === null ? "hidden" : "visible",
     imgRef: img,
     zoomIn,
     zoomOut,

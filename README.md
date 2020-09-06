@@ -128,5 +128,6 @@ const handleOutZoom = () => `zoomOut()`;
 | zoomIn              | `Function`                                    | Call the zoom in manually. The transformation point will be at the center                        |
 | zoomOut             | `Function`                                    | Call the zoom out manually. The transformation point will be at the center                       |
 | fit                 | `React.CSSProperties`                         | Decides when the image should be `object-fit: contain;' or 'object-fit: none;'                   |
+|visibility|`React.CSSProperties` | The `visibility` property specifies whether or not an element is visible. This is mainly done to remove flickering from the image.
 | imgRef                 | `React.RefObject`                             | Access an image by providing a reference                                                         |
 | transitionClassName | `String`                                      | Class name to provide a smooth transition when scaling                                           |
