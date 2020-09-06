@@ -149,6 +149,8 @@ function useZoom({ transitionClassName }) {
 
     matrix.current.x = matrix.current.vtm.e;
     matrix.current.y = matrix.current.vtm.f;
+
+    img.current.classList.remove(transitionClassName);
   };
 
   const fireMove = (x, y) => {
@@ -185,6 +187,7 @@ function useZoom({ transitionClassName }) {
     scale.current.originX = centerX;
     scale.current.originY = centerY;
     scale.current.lastHypo = Math.trunc(getDistance(touchA, touchB));
+    img.current.classList.remove(transitionClassName);
   };
 
   const fireTapScale = (x, y) => {
