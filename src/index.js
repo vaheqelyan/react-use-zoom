@@ -35,7 +35,7 @@ function useZoom({ transitionClassName }) {
   const img = useRef();
   const matrix = useRef(new Matrix());
 
-  const _velocity = useRef(new MultiTouchVelocity());
+  const velocity = useRef(new MultiTouchVelocity());
 
   const lastTap = useRef({
     time: 0,
@@ -99,6 +99,34 @@ function useZoom({ transitionClassName }) {
   useEffect(() => {
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("resize", onResize);
+
+   xY.current = {
+       initX: 0,
+       initY: 0,
+       newX: 0,
+       newY: 0,
+     };
+     ratio.current = {};
+     matrix.current = new Matrix()
+
+     lastTap.current = {
+       time: 0,
+       x: 0,
+     };
+
+     scale.current = {
+       scaling: false,
+       x1: 0,
+       x2: 0,
+       y1: 0,
+       y2: 0,
+       lastHypo: 0,
+       originX: 0,
+       originY: 0,
+       value: 1,
+       max: 1,
+     };
+
   }, []);
 
   const onMouseDown = ({ clientX, clientY }) => {
@@ -203,7 +231,7 @@ function useZoom({ transitionClassName }) {
     if (isMultiTouch) {
       fireScale(touchA, touchB);
 
-      _velocity.current.down(touchA, touchB);
+      velocity.current.down(touchA, touchB);
     } else {
       // === start ===
       var now = new Date().getTime();
@@ -233,7 +261,7 @@ function useZoom({ transitionClassName }) {
 
     f = f >= 1 ? 1 : -1;
 
-    const ff = _velocity.current.getVelocity(touchA, touchB);
+    const ff = velocity.current.getVelocity(touchA, touchB);
 
     const xFactor = 1 + 0.1 * ff * f;
 
