@@ -94,6 +94,8 @@ function useZoom({ transitionClassName }) {
   const onMouseDown = ({ clientX, clientY }) => {
     fireDown(clientX, clientY);
 
+    img.current.classList.remove(transitionClassName);
+
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mouseup", onMouseUp);
   };
@@ -133,6 +135,7 @@ function useZoom({ transitionClassName }) {
 
     scale.current.scaling = false;
     scale.current.lastHypo = 0;
+    img.current.classList.add(transitionClassName);
   };
 
   const fireScale = (touchA, touchB) => {
