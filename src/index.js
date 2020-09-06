@@ -32,7 +32,7 @@ function useZoom({ transitionClassName }) {
   });
   const ratio = useRef();
   const img = useRef();
-  const matrix = useRef(new Matrix());
+  const matrix = useRef();
 
   const velocity = useRef(new MultiTouchVelocity());
 
@@ -99,32 +99,7 @@ function useZoom({ transitionClassName }) {
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("resize", onResize);
 
-    xY.current = {
-      initX: 0,
-      initY: 0,
-      newX: 0,
-      newY: 0,
-    };
-    ratio.current = {};
     matrix.current = new Matrix();
-
-    lastTap.current = {
-      time: 0,
-      x: 0,
-    };
-
-    scale.current = {
-      scaling: false,
-      x1: 0,
-      x2: 0,
-      y1: 0,
-      y2: 0,
-      lastHypo: 0,
-      originX: 0,
-      originY: 0,
-      value: 1,
-      max: 1,
-    };
   }, []);
 
   const onMouseDown = ({ clientX, clientY }) => {
