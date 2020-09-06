@@ -281,21 +281,12 @@ function useZoom({ transitionClassName, src }) {
   };
 
   const onLoad = () => {
-    let loadImage = new Image();
+    const { naturalWidth, naturalHeight } = img.current;
 
-    loadImage.onload = function() {
-      const { naturalWidth, naturalHeight } = loadImage;
-      if (naturalWidth > window.innerWidth || naturalHeight > window.innerHeight) {
-        setFit(true);
-      } else {
-        setFit(false);
-      }
+    setFit(naturalWidth > window.innerWidth || naturalHeight > window.innerHeight);
 
-      scale.current.max = Math.max(naturalWidth / window.innerWidth, 1);
-      ratio.current = calculateAspectRatioFit(naturalWidth, naturalHeight, window.innerWidth, window.innerHeight);
-    };
-
-    loadImage.src = src;
+    scale.current.max = Math.max(naturalWidth / window.innerWidth, 1);
+    ratio.current = calculateAspectRatioFit(naturalWidth, naturalHeight, window.innerWidth, window.innerHeight);
   };
 
   const fireManualZoom = dir => {
@@ -331,6 +322,7 @@ function useZoom({ transitionClassName, src }) {
 
   return {
     events: {
+      onLoad,
       onMouseDown,
       onTouchStart,
     },
