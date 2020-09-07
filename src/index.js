@@ -12,7 +12,7 @@ const getDistance = (touchA, touchB) => {
   return Math.hypot(touchA.pageX - touchB.pageX, touchA.pageY - touchB.pageY);
 };
 
-function useZoom({ transitionClassName, src }) {
+function useZoom({ transitionClassName }) {
   const xY = useRef({
     initX: 0,
     initY: 0,
