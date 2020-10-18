@@ -47,7 +47,7 @@ function useZoom({ transitionClassName }) {
 
   const touchScreen = useRef(false);
 
-  const [fit, setFit] = useState(false);
+  const [fit, setFit] = useState(null);
 
   const onWheel = e => {
     e.preventDefault();
