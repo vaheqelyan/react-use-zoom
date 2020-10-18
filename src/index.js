@@ -143,7 +143,7 @@ function useZoom({ transitionClassName }) {
 
     scale.current.scaling = false;
     scale.current.lastHypo = 0;
-    img.current.classList.add(transitionClassName);
+    if(img.current) img.current.classList.add(transitionClassName);
   };
 
   const fireScale = (touchA, touchB) => {
