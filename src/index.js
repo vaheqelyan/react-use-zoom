@@ -91,6 +91,11 @@ function useZoom({ transitionClassName }) {
     window.addEventListener("resize", onResize);
 
     matrix.current = new Matrix();
+
+    return () => {
+      window.addEventListener("wheel", onWheel, { passive: false });
+      window.addEventListener("resize", onResize);
+    };
   }, []);
 
   const onMouseDown = ({ clientX, clientY }) => {
