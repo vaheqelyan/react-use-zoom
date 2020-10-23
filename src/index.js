@@ -93,8 +93,8 @@ function useZoom({ transitionClassName }) {
     matrix.current = new Matrix();
 
     return () => {
-      window.addEventListener("wheel", onWheel, { passive: false });
-      window.addEventListener("resize", onResize);
+      window.removeEventListener("wheel", onWheel, { passive: false });
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
