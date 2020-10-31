@@ -235,7 +235,7 @@ function useZoom({ transitionClassName }) {
 
     f = f >= 1 ? 1 : -1;
 
-    const ff = velocity.current.getVelocity(touchA, touchB);
+    const ff = velocity.current.getVelocity(touchA, touchB) || 1;
 
     const xFactor = 1 + 0.1 * ff * f;
 
