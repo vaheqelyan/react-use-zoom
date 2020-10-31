@@ -209,15 +209,19 @@ function useZoom({ transitionClassName }) {
       velocity.current.down(touchA, touchB);
     } else {
       var now = new Date().getTime();
-      if (now - lastTap.current.time < 250 && Math.abs(lastTap.current.x - touchA.pageX) <= 20) {
+      const { pageX, pageY } = touchA;
+      if (now - lastTap.current.time < 250 && Math.hypot(lastTap.current.x - pageX, lastTap.current.y - pageY) <= 20) {
         img.current.classList.add(transitionClassName);
-        fireTapScale(touchA.pageX, touchA.pageY);
+        fireTapScale(pageX, pageY);
+      } else {
+        fireDown(pageX, pageY);
       }
 
-      lastTap.current.time = new Date().getTime();
-      lastTap.current.x = touchA.pageX;
-
-      fireDown(touchA.pageX, touchA.pageY);
+      lastTap.current = {
+        time: now,
+        x: pageX,
+        y: pageY,
+      };
     }
 
     // Clean up
